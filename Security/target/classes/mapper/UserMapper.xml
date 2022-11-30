@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="UserMapper">
+	
+	
+	<select id="getInfo" resultType="UserVO">
+	SELECT 	   CPCODE
+         	 , CDSTF
+         	 , USERNAME
+         	 , NICKNAME
+    FROM tb_user
+    WHERE USERID= 'admin'
+	</select>
+	
+	<select id="idCheck" parameterType="int" resultType="com.company.vo.UserVO">
+	select count(*) from tb_user where userid = #{userId}
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO tb_user (userid, password, userName, email, tel, birthDate, address, cpcode, create_time)
+		values (#{userId},#{password},#{userName},#{email},#{tel},#{birthDate},#{address},#{cpcode},now())
+	</insert>
+	
+	<select id="read" resultType="UserVO">
+		select * from tb_user where userid = #{userId}
+	</select>
+</mapper>
