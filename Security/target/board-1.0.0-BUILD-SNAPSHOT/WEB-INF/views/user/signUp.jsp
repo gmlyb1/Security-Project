@@ -22,33 +22,36 @@
 </head>
 
 <script type="text/javascript">
-	$(document).ready(function(){
+
+	$(document).ready(function() {
 		$("#idCheck").click(function(event) {
 			event.preventDefault();
-		
-			var inputId = $("#inputId").val();
+			var inputId = $("#inputId").val(); 
 			
 			$.ajax({
+				
 				type : 'post',
 				url : '/user/idCheck',
 				data : {
-					userid : inputId
+					userId : inputId
 				},
 				dataType : 'text',
 				success : function(result) {
-					if(result == 1) {
+					
+					if (result == 1) {
 						var span = $("#idCheck").next();
 						span.html("중복된 ID 입니다.");
 						$("#inputId").focus();
-					}else {
+					} else {
 						var span = $("#idCheck").next();
 						span.html("사용 가능한 ID 입니다.");
 					}
 				}
 			});
+			
 		});
-
 	});
+
 </script>
 
 
@@ -67,7 +70,7 @@
 				<div class="form-group">
 					<label for="inputId" class="col-sm-2 control-label">ID</label>
 					<div class="col-sm-10">
-						<input class="form-control" id="inputId" placeholder="ID" name="userid">
+						<input class="form-control" id="inputId" placeholder="ID" name="userId">
 						<button class="btn btn-default btn-sm" id="idCheck">ID 중복체크</button>
 						<span></span>
 					</div>
